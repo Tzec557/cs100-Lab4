@@ -114,78 +114,57 @@ TEST(HailstoneTests, testNegativeHailstone){
 
 
 
-
-
 // Awards
 
 #include "../include/Awards.h"
 
-#include <string>
-#include <vector>
-
+using namespace awards;
 using ::testing::InSequence;
 
-using awards::RankList;
-using awards::AwardCeremonyActions;
+class RankListStub : public awards::RankList {
+public:
+    RankListStub() : currentIndex(0) {
+        names.push_back("Alex");
+        names.push_back("Brian");
+        names.push_back("Charlie");
+    }
 
-using std::string;
-using std::vector;
+    std::string getNext() override {
+        if (currentIndex < names.size()) {
+            return names[currentIndex++];
+        } else {
+            return "";
+        }
+    }
 
-
-
-
-class MockRankList : public RankList {
-
-	vector<string> names = {"Adam", "Beethoven", "Carl"};
-	size_t current = 0;
-
-	public: 
-		
-		string getNext() override {
-			
-			if (current < names.size()) {
-				return names[current++];
-			}
-
-			return "";
-		}
-
+private:
+    std::vector<std::string> names;
+    int currentIndex;
 };
 
 
-class MockAwardCeremonyActions : public AwardCeremonyActions
-{
-	public:
-		MOCK_METHOD(void, playAnthem, (), (override));
-		MOCK_METHOD(void, turnOffTheLightsAndGoHome, (), (override));
-		MOCK_METHOD(void, awardBronze, (string recipient), (override));
-		MOCK_METHOD(void, awardSilver, (string recipient), (override));
-		MOCK_METHOD(void, awardGold, (string recipient), (override));
+class MockAwardCeremonyActions : public AwardCeremonyActions {
+public:
+    MOCK_METHOD(void, playAnthem, (), (override));
+    MOCK_METHOD(void, awardBronze, (std::string name), (override));
+    MOCK_METHOD(void, awardSilver, (std::string name), (override));
+    MOCK_METHOD(void, awardGold, (std::string name), (override));
+    MOCK_METHOD(void, turnOffTheLightsAndGoHome, (), (override));
 };
 
 
+TEST(AwardsTests, PerformAwardCeremonyCallsMethodsInCorrectOrder) {
 
-TEST(AwardsTest, testPerformAwardCeremony) {
+    RankListStub rankListStub;
+    MockAwardCeremonyActions mockActions;
+    InSequence seq;
 
+    EXPECT_CALL(mockActions, playAnthem()).Times(1);
+    EXPECT_CALL(mockActions, awardBronze("Alex")).Times(1);
+    EXPECT_CALL(mockActions, awardSilver("Brian")).Times(1);
+    EXPECT_CALL(mockActions, awardGold("Charlie")).Times(1);
+    EXPECT_CALL(mockActions, turnOffTheLightsAndGoHome()).Times(1);
 
-	MockAwardCeremonyActions mock;
-	MockRankList mockRankList;
+    performAwardCeremony(rankListStub, mockActions);
 
-	string GoldPlayer   = "Adam";
-        string SilverPlayer = "Beethoven";
-	string BronzePlayer = "Carl";
-
-	{
-	
-		InSequence seq;
-
-		EXPECT_CALL(mock, playAnthem());
-		EXPECT_CALL(mock, awardBronze(BronzePlayer));
-		EXPECT_CALL(mock, awardSilver(SilverPlayer));
-		EXPECT_CALL(mock, awardGold(GoldPlayer));
-		EXPECT_CALL(mock, turnOffTheLightsAndGoHome());
-
-	}
-
-	performAwardCeremony(mockRankList, mock);
 }
