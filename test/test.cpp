@@ -1,58 +1,27 @@
 #include "gtest/gtest.h"
-#include "../include/Triangle.h"
-using shapes::Triangle;
+#include "../include/Hailstone.h"  
+using sequence::satisfiesHailstone;
 
-
-
-TEST(TriangleTest, testPerimeter) {
-    Triangle *aTriangle = new Triangle(5,4,3);
-
-
-    ASSERT_NE(aTriangle, nullptr);
-    EXPECT_EQ (aTriangle->getPerimeter(),12);
+TEST(HailstoneTests, SatisfiesHailstoneWithZero) {
+    EXPECT_FALSE(satisfiesHailstone(0));
 }
 
-TEST(TriangleTest, testArea) {
-    Triangle *aTriangle = new Triangle(5,4,3);
-
-
-    ASSERT_NE(aTriangle, nullptr);
-    EXPECT_EQ (aTriangle->getArea(),6);
+TEST(HailstoneTests, SatisfiesHailstoneWithOne) {
+    EXPECT_TRUE(satisfiesHailstone(1));
 }
 
-TEST(TriangleTest, testKindEquilateral) {
-    Triangle *aTriangle = new Triangle(3,3,3);
-    Triangle::Kind result = aTriangle->getKind();
-
-    ASSERT_NE(aTriangle, nullptr);
-    EXPECT_EQ(result, Triangle::Kind::EQUILATERAL);
+TEST(HailstoneTests, SatisfiesHailstoneWithEven) {
+    EXPECT_TRUE(satisfiesHailstone(2));
+    EXPECT_TRUE(satisfiesHailstone(4));
+    EXPECT_TRUE(satisfiesHailstone(6));
 }
 
-
-TEST(TriangleTest, testDeathConstructorUno) {
-
-    EXPECT_DEATH(Triangle(3,4,5), "First side is not the longest");
+TEST(HailstoneTests, SatisfiesHailstoneWithOdd) {
+    EXPECT_TRUE(satisfiesHailstone(3));
+    EXPECT_TRUE(satisfiesHailstone(5));
+    EXPECT_TRUE(satisfiesHailstone(7));
 }
 
-
-TEST(TriangleTest, testIsEquilateral) {
-
-    Triangle *aTriangle = new Triangle(3,3,3);
-   EXPECT_TRUE(aTriangle->isEquilateral());
+TEST(HailstoneTests, SatisfiesHailstoneWithLarge) {
+    EXPECT_TRUE(satisfiesHailstone(999));
 }
-
-TEST(TriangleTest, testKindIsosceles) {
-    Triangle *aTriangle = new Triangle(3,3,3);
-    Triangle::Kind result = aTriangle->getKind();
-    EXPECT_EQ(result, Triangle::Kind::ISOSCELES);
-}
-
-TEST(TriangleTest, testKindScalene) {
-    Triangle *aTriangle = new Triangle(5,4,3);
-    Triangle::Kind result = aTriangle->getKind();
-
-    ASSERT_NE(aTriangle, nullptr);
-    EXPECT_EQ(result, Triangle::Kind::SCALENE);
-}
-
-
