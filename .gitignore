@@ -16,3 +16,6 @@ lib/libgtest.a
 lib/libgtest_main.a
 lib/libsimpleLibrary.a
 test/Makefile
+
+CMakeCache.txt
+cmake_install.cmake
