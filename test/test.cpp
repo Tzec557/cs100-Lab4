@@ -3,14 +3,42 @@
 using shapes::Triangle;
 
 
-TEST(TriangleTests, testPerimeter) {
-    Triangle *aTriangle = new Triangle(3,3,3);
-    EXPECT_EQ (aTriangle->getPerimeter(),9);
+
+TEST(TriangleTest, testPerimeter) {
+    Triangle *aTriangle = new Triangle(5,4,3);
+
+
+    ASSERT_NE(aTriangle, nullptr);
+    EXPECT_EQ (aTriangle->getPerimeter(),12);
 }
 
-TEST(TriangleTests, testArea) {
+TEST(TriangleTest, testArea) {
+    Triangle *aTriangle = new Triangle(5,4,3);
+
+
+    ASSERT_NE(aTriangle, nullptr);
+    EXPECT_EQ (aTriangle->getArea(),6);
+}
+
+TEST(TriangleTest, testKindEquilateral) {
     Triangle *aTriangle = new Triangle(3,3,3);
-    EXPECT_EQ (aTriangle->getArea(),3.897114317029974);
+    Triangle::Kind result = aTriangle->getKind();
+
+    ASSERT_NE(aTriangle, nullptr);
+    EXPECT_EQ(result, Triangle::Kind::EQUILATERAL);
+}
+
+
+TEST(TriangleTest, testDeathConstructorUno) {
+
+    EXPECT_DEATH(Triangle(3,4,5), "First side is not the longest");
+}
+
+
+TEST(TriangleTest, testIsEquilateral) {
+
+    Triangle *aTriangle = new Triangle(3,3,3);
+    EXPECT_TRUE(aTriangle->isEquilateral()); 
 }
 
 TEST(TriangleTest, testKindIsosceles) {
@@ -19,29 +47,12 @@ TEST(TriangleTest, testKindIsosceles) {
     EXPECT_EQ(result, Triangle::Kind::ISOSCELES);
 }
 
-TEST(TriangleTest, testKindEquilateral) {
-    Triangle *aTriangle = new Triangle(3,3,3);
-    Triangle::Kind result = aTriangle->getKind();
-    EXPECT_EQ(result, Triangle::Kind::EQUILATERAL);
-}
-
 TEST(TriangleTest, testKindScalene) {
-    Triangle *aTriangle = new Triangle(3,3,3);
+    Triangle *aTriangle = new Triangle(5,4,3);
     Triangle::Kind result = aTriangle->getKind();
+
+    ASSERT_NE(aTriangle, nullptr);
     EXPECT_EQ(result, Triangle::Kind::SCALENE);
 }
 
-TEST(TriangleTests, testisIsosceles) {
-    Triangle *aTriangle = new Triangle(3,3,4);
-    EXPECT_TRUE (aTriangle->isIsosceles());
-}
 
-TEST(TriangleTests, testisEquilateral) {
-    Triangle *aTriangle = new Triangle(3,3,3);
-    EXPECT_TRUE (aTriangle->isEquilateral());
-}
-
-// TEST(TriangleTests, testisEquilateral) {
-//     Triangle *aTriangle = new Triangle(3,3,3);
-//     EXPECT_DEATH(aTriangle->isEquilateral());
-// }
