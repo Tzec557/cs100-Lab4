@@ -14,17 +14,17 @@ TEST(TriangleTests, testPArea) {
 }
 
 TEST(TriangleTest, testKindIsosceles) {
-    Kind result = triangle.getKind();
+    Kind *result = triangle.getKind();
     EXPECT_EQ(result, Kind::ISOSCELES);
 }
 
 TEST(TriangleTest, testKindEquilateral) {
-    Kind result = triangle.getKind();
+    Kind *result = triangle.getKind();
     EXPECT_EQ(result, Kind::EQUILATERAL);
 }
 
 TEST(TriangleTest, testKindScalene) {
-    Kind result = triangle.getKind();
+    Kind *result = triangle.getKind();
     EXPECT_EQ(result, Kind::SCALENE);
 }
 
