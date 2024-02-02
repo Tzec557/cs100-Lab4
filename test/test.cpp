@@ -10,7 +10,7 @@ TEST(TriangleTests, testPerimeter) {
 
 TEST(TriangleTests, testArea) {
     Triangle *aTriangle = new Triangle(3,3,3);
-    EXPECT_EQ (aTriangle->getArea(),3.89711);
+    EXPECT_EQ (aTriangle->getArea(),3.897114317029974);
 }
 
 TEST(TriangleTest, testKindIsosceles) {
