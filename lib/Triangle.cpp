@@ -57,4 +57,3 @@ Triangle::getKind() const {
     return Kind::SCALENE;
   }
 }
-

@@ -41,7 +41,7 @@ TEST(TriangleTests, testisEquilateral) {
     EXPECT_TRUE (aTriangle->isEquilateral());
 }
 
-TEST(TriangleTests, testisEquilateral) {
-    Triangle *aTriangle = new Triangle(3,3,3);
-    EXPECT_DEATH(aTriangle->isEquilateral());
-}
+// TEST(TriangleTests, testisEquilateral) {
+//     Triangle *aTriangle = new Triangle(3,3,3);
+//     EXPECT_DEATH(aTriangle->isEquilateral());
+// }
