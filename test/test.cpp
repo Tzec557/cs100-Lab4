@@ -15,20 +15,20 @@ TEST(TriangleTests, testPArea) {
 
 TEST(TriangleTest, testKindIsosceles) {
     Triangle *aTriangle = new Triangle(3,3,3);
-    Kind result = aTriangle->getKind();
-    EXPECT_EQ(result, Kind::ISOSCELES);
+    Triangle::Kind result = aTriangle->getKind();
+    EXPECT_EQ(result, Triangle::Kind::ISOSCELES);
 }
 
 TEST(TriangleTest, testKindEquilateral) {
     Triangle *aTriangle = new Triangle(3,3,3);
-    Kind result = aTriangle->getKind();
-    EXPECT_EQ(result, Kind::EQUILATERAL);
+    Triangle::Kind result = aTriangle->getKind();
+    EXPECT_EQ(result, Triangle::Kind::EQUILATERAL);
 }
 
 TEST(TriangleTest, testKindScalene) {
     Triangle *aTriangle = new Triangle(3,3,3);
-    Kind result = aTriangle->getKind();
-    EXPECT_EQ(result, Kind::SCALENE);
+   Triangle::Kind result = aTriangle->getKind();
+    EXPECT_EQ(result, Triangle::Kind::SCALENE);
 }
 
 TEST(TriangleTests, testisIsosceles) {
@@ -36,7 +36,7 @@ TEST(TriangleTests, testisIsosceles) {
     EXPECT_TRUE (aTriangle->isIsosceles());
 }
 
-TEST(TriangleTests, testisIsosceles) {
+TEST(TriangleTests, testisEquilateral) {
     Triangle *aTriangle = new Triangle(3,3,3);
     EXPECT_TRUE (aTriangle->isEquilateral());
 }
