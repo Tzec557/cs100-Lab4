@@ -8,7 +8,7 @@ TEST(TriangleTests, testPerimeter) {
     EXPECT_EQ (aTriangle->getPerimeter(),9);
 }
 
-TEST(TriangleTests, testPArea) {
+TEST(TriangleTests, testArea) {
     Triangle *aTriangle = new Triangle(3,3,3);
     EXPECT_EQ (aTriangle->getArea(),3.89711);
 }
@@ -27,7 +27,7 @@ TEST(TriangleTest, testKindEquilateral) {
 
 TEST(TriangleTest, testKindScalene) {
     Triangle *aTriangle = new Triangle(3,3,3);
-   Triangle::Kind result = aTriangle->getKind();
+    Triangle::Kind result = aTriangle->getKind();
     EXPECT_EQ(result, Triangle::Kind::SCALENE);
 }
 
@@ -39,4 +39,9 @@ TEST(TriangleTests, testisIsosceles) {
 TEST(TriangleTests, testisEquilateral) {
     Triangle *aTriangle = new Triangle(3,3,3);
     EXPECT_TRUE (aTriangle->isEquilateral());
+}
+
+TEST(TriangleTests, testisEquilateral) {
+    Triangle *aTriangle = new Triangle(3,3,3);
+    EXPECT_DEATH(aTriangle->isEquilateral());
 }
