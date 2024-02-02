@@ -38,7 +38,7 @@ TEST(TriangleTest, testDeathConstructorUno) {
 TEST(TriangleTest, testIsEquilateral) {
 
     Triangle *aTriangle = new Triangle(3,3,3);
-    EXPECT_TRUE(aTriangle->isEquilateral()); 
+   EXPECT_TRUE(aTriangle->isEquilateral());
 }
 
 TEST(TriangleTest, testKindIsosceles) {
