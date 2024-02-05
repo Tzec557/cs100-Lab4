@@ -157,6 +157,7 @@ TEST(AwardsTests, PerformAwardCeremonyCallsMethodsInCorrectOrder) {
 
     RankListStub rankListStub;
     MockAwardCeremonyActions mockActions;
+    {
     InSequence seq;
 
     EXPECT_CALL(mockActions, playAnthem()).Times(1);
@@ -164,7 +165,7 @@ TEST(AwardsTests, PerformAwardCeremonyCallsMethodsInCorrectOrder) {
     EXPECT_CALL(mockActions, awardSilver("Brian")).Times(1);
     EXPECT_CALL(mockActions, awardGold("Charlie")).Times(1);
     EXPECT_CALL(mockActions, turnOffTheLightsAndGoHome()).Times(1);
-
+    }
     performAwardCeremony(rankListStub, mockActions);
-
+   
 }
